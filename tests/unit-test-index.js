@@ -61,17 +61,44 @@ describe('Tests for kata/51fda2d95d6efda45e00004e', function () {
         user.progress = 99;
         user.incProgress(8);
         expect(user.rank).to.be.equal(8);
-        expect(user.progress).to.be.equal(2);
+        expect(user.progress).to.be.equal(0);
         done();
     });
 
-    it('should handle multiple attempts', function (done) {
+    it('should handle multiple attempts, no rank upgrade', function (done) {
         const user = new User();
         user.rank = -7;
         user.incProgress(-8);
-        user.incProgress(-4)
+        user.incProgress(-4);
         expect(user.rank).to.be.equal(-7);
         expect(user.progress).to.be.equal(91);
+        done();
+    });
+
+    it('should handle multiple attempts, rank upgrade', function (done) {
+        const user = new User();
+        user.rank = -7;
+        user.incProgress(-8);
+        user.incProgress(-3);
+        expect(user.rank).to.be.equal(-6);
+        expect(user.progress).to.be.equal(61);
+        done();
+    });
+
+    it('should handle large jumps in rank', function (done) {
+        const user = new User();
+        user.incProgress(8);
+        expect(user.rank).to.be.equal(8);
+        expect(user.progress).to.be.equal(0);
+        done();
+    });
+
+    it('should award one progress point for a user at rank 1 doing a task at level -1', function (done) {
+        const user = new User();
+        user.rank = 1;
+        user.incProgress(-1);
+        expect(user.rank).to.be.equal(1);
+        expect(user.progress).to.be.equal(1);
         done();
     });
 });

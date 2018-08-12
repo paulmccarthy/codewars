@@ -15,8 +15,9 @@ class User {
             }
 
             // no rank beyond 8
-            if (this.rank > 8) {
+            if (this.rank >= 8) {
                 this.rank = 8;
+                this.progress = 0;
             }
         }
     }
@@ -26,28 +27,41 @@ class User {
             throw new Error('Invalid rank supplied');
         }
 
-        // negative diff means that user completed a higher rank
-        // positive diff means that user completed a lower rank
-        const diff = this.rank - level;
+        if (this.rank === 8) {
+            this.progress = 0;
+        } else {
+            // negative diff means that user completed a higher rank
+            // positive diff means that user completed a lower rank
+            const diff = this.rank - level;
 
-        // same level - 3 progress points
-        if (diff === 0) {
-            this.progress += 3;
-        } else if (diff === 1) {
+            // same level - 3 progress points
+            if (diff === 0) {
+                this.progress += 3;
+            }
+
             // completed lower rank
             // 2 levels or more lower are ignored
-            this.progress += 1;
-        } else if (diff < 0) {
-            // completed a higher rank
-            if (this.rank < 0 && level > 0) {
-                // there is no zero level
-                this.progress += (10 * (diff + 1) * (diff + 1));
-            } else {
-                this.progress += (10 * diff * diff);
+            if (diff === 1) {
+                this.progress += 1;
             }
-        }
 
-        this.checkProgress();
+            // completed a lower rank while at rank 1
+            if (diff === 2 && this.rank === 1 && level === -1) {
+                this.progress += 1;
+            }
+
+            // completed a higher rank
+            if (diff < 0) {
+                if (this.rank < 0 && level > 0) {
+                    // there is no zero level
+                    this.progress += (10 * (diff + 1) * (diff + 1));
+                } else {
+                    this.progress += (10 * diff * diff);
+                }
+            }
+
+            this.checkProgress();
+        }
     }
 }
 
