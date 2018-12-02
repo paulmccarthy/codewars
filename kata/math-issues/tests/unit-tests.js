@@ -23,7 +23,7 @@ const config = {
         ]
     },
     ceil: {
-        func: math.ceil, 
+        func: math.ceil,
         name: 'ceil',
         tests: [
             {args: 1.2, expected: 2},
@@ -35,7 +35,7 @@ const config = {
         ]
     },
     floor: {
-        func: math.floor, 
+        func: math.floor,
         name: 'floor',
         tests: [
             {args: 1.2, expected: 1},
@@ -50,7 +50,7 @@ const config = {
 
 for (let i in config) {
 
-    describe('Unit tests for ' + config[i].name, function() {
+    describe('Unit tests for math-issues#' + config[i].name, function() {
 
         config[i].tests.forEach(function(test) {
 

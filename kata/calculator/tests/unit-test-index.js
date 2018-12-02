@@ -7,7 +7,7 @@ const tests = [
     ['10 / 5 + 2 * 10', 22]
 ];
 
-describe('Unit tests', function () {
+describe('Unit tests for calculator', function () {
     describe('Provided tests', function() {
         it('should return the correct results for the provided tests', function (done) {
             const calculate = new Calculator();

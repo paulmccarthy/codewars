@@ -3,7 +3,7 @@
 const expect = require('chai').expect;
 const intervals = require('../index');
 
-describe('Unit tests for index.js', function() {
+describe('Unit tests sum of intervals', function() {
     it('should return null if the intervals are not defined', function(done) {
         let result = intervals.sum();
         expect(result).to.be.null;

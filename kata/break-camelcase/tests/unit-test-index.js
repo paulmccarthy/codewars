@@ -3,7 +3,7 @@
 const expect = require('chai').expect;
 const converter = require('../index');
 
-describe('Unit tests for index.js', function() {
+describe('Unit tests for break camel case', function() {
     it('should handle two combined words', function(done) {
         let result = converter.withRegex('camelCase');
         expect(result).to.be.equal('camel Case');
