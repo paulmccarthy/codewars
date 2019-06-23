@@ -7,7 +7,7 @@ const utils = require('../utils');
 const assembly = require('./helpers/assembly');
 const expectedResults = require('./helpers/expectedResults');
 
-describe('Tests for assembler-interpreter-part-ii', function () {
+describe.only('Tests for assembler-interpreter-part-ii', function () {
     describe('Unit tests for program parser', function () {
         it('Simple arithmetic program', function () {
             const result = utils.programParser(assembly.program);
@@ -50,7 +50,7 @@ describe('Tests for assembler-interpreter-part-ii', function () {
             expect(assemblerInterpreter(assembly.program)).to.be.equal('(5+1)/2 = 3');
         });
 
-        it('Factorial', function () {
+        it.only('Factorial', function () {
             expect(assemblerInterpreter(assembly.programFactorial)).to.be.equals('5! = 120');
         });
 
