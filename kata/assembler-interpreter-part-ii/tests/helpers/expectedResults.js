@@ -1,0 +1,147 @@
+module.exports.program = [
+    'mov a, 5',
+    'inc a',
+    'call function',
+    'msg "(5+1)/2 = ", a',
+    'end',
+    'function:',
+    'div a, 2',
+    'ret'
+];
+
+module.exports.programFactorial = [
+    'mov a, 5',
+    'mov b, a',
+    'mov c, a',
+    'call proc_fact',
+    'call print',
+    'end',
+    'proc_fact:',
+    'dec b',
+    'mul c, b',
+    'cmp b, 1',
+    'jne proc_fact',
+    'ret',
+    'print:',
+    'msg a, "! = ", c',
+    'ret'
+];
+
+module.exports.programFibonacci = [
+    'mov a, 8',
+    'mov b, 0',
+    'mov c, 0',
+    'mov d, 0',
+    'mov e, 1',
+    'call proc_fib',
+    'call print',
+    'end',
+    'proc_fib:',
+    'cmp c, 2',
+    'jl func_0',
+    'mov b, d',
+    'add b, e',
+    'mov d, e',
+    'mov e, b',
+    'inc c',
+    'cmp c, a',
+    'jle proc_fib',
+    'ret',
+    'func_0:',
+    'mov b, c',
+    'inc c',
+    'jmp proc_fib',
+    'print:',
+    'msg "Term ", a, " of Fibonacci series is: ", b',
+    'ret'
+];
+
+
+module.exports.programMod = [
+    'mov a, 11',
+    'mov b, 3',
+    'call mod_func',
+    'msg "mod(", a, ", ", b, ") = ", d',
+    'end',
+    'mod_func:',
+    'mov c, a',
+    'div c, b',
+    'mul c, b',
+    'mov d, a',
+    'sub d, c',
+    'ret'
+];
+
+module.exports.programGcd = [
+    'mov a, 81',
+    'mov b, 153',
+    'call init',
+    'call proc_gcd',
+    'call print',
+    'end',
+    'proc_gcd:',
+    'cmp c, d',
+    'jne loop',
+    'ret',
+    'loop:',
+    'cmp c, d',
+    'jg a_bigger',
+    'jmp b_bigger',
+    'a_bigger:',
+    'sub c, d',
+    'jmp proc_gcd',
+    'b_bigger:',
+    'sub d, c',
+    'jmp proc_gcd',
+    'init:',
+    'cmp a, 0',
+    'jl a_abs',
+    'cmp b, 0',
+    'jl b_abs',
+    'mov c, a',
+    'mov d, b',
+    'ret',
+    'a_abs:',
+    'mul a, -1',
+    'jmp init',
+    'b_abs:',
+    'mul b, -1',
+    'jmp init',
+    'print:',
+    'msg "gcd(", a, ", ", b, ") = ", c',
+    'ret'
+];
+
+module.exports.programFail = [
+    'call func1',
+    'call print',
+    'end',
+    'func1:',
+    'call func2',
+    'ret',
+    'func2:',
+    'ret',
+    'print:',
+    'msg "This program should return -1"'
+];
+
+module.exports.programPower = [
+    'mov a, 2',
+    'mov b, 10',
+    'mov c, a',
+    'mov d, b',
+    'call proc_func',
+    'call print',
+    'end',
+    'proc_func:',
+    'cmp d, 1',
+    'je continue',
+    'mul c, a',
+    'dec d',
+    'call proc_func',
+    'continue:',
+    'ret',
+    'print:',
+    'msg a, "^", b, " = ", c',
+    'ret'
+];
